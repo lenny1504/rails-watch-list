@@ -1,0 +1,19 @@
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%="https://images.unsplash.com/photo-1478720568477-152d9b164e26?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8Y2luZW1hfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60"%>);">
+    <div class= "container">
+    <h1><%= @list.name %></h1>
+    <p></p>
+    <%= link_to "Add Bookmark", new_list_bookmark_path(@list.id), class: "btn btn-primary"%>
+    </div>
+</div>
+
+
+<div class="cards">
+ <% @list.bookmarks.each do |bookmark| %>
+  <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= bookmark.movie.poster_url %>')">
+    <p><%= bookmark.movie.title %></p>
+    <p class= "p-small">Rating: <%= bookmark.movie.rating %></p>
+    <p class= "p-small">Comment: <%= bookmark.comment %></p>
+    <%=  link_to bookmark_path(bookmark), method: :delete, data: {confirm: "Are you sure?"} do %><p class= "p-small">Delete</p><% end %>
+  </div>
+  <% end %>
+</div>
